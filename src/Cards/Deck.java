@@ -20,8 +20,7 @@ public class Deck {
     public void assignValues() {
         for(Suit s : Suit.values()) {
             for(Rank r : Rank.values()) {
-                Card c = new Card(s, r);
-                this.cards.add(c);
+                this.cards.add(new Card(s, r));
             }
         }
     }

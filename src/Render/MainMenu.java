@@ -22,12 +22,14 @@ public class MainMenu extends JFrame implements ActionListener, Util {
     }
 
     public void handleFrame() {
-        this.frame.setVisible(true);
-        this.frame.setResizable(false);
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.frame.setSize(500, 500);
+        this.frame.setLocationRelativeTo(null);
         this.frame.setUndecorated(true);
+        this.frame.setResizable(false);
         this.frame.add(panel);
+        this.frame.setVisible(true);
+
 
         this.panel.setSize(frame.getWidth(), frame.getHeight());
         this.panel.add(start);
