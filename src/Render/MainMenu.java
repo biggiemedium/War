@@ -13,18 +13,23 @@ public class MainMenu extends JFrame implements ActionListener, Util {
     private JPanel panel;
     private JButton start;
     private JButton exit;
-    private JTextField war;
+    private JLabel war;
+    private JTextArea playerName;
 
     public MainMenu() {
         this.frame = new JFrame("War");
         this.panel = new JPanel(null);
         this.start = new JButton("Start");
         this.exit = new JButton("Exit");
-        this.war = new JTextField("War");
+        this.war = new JLabel("War");
+        this.playerName = new JTextArea("Enter Player Name Here");
         handleFrame();
         handleComponents();
     }
 
+    /**
+     * Sets frame dimensions and adds JPanel
+     */
     public void handleFrame() {
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.frame.setSize(500, 500);
@@ -39,6 +44,7 @@ public class MainMenu extends JFrame implements ActionListener, Util {
         this.panel.add(start);
         this.panel.add(exit);
         this.panel.add(war);
+        this.panel.add(playerName);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
@@ -46,6 +52,9 @@ public class MainMenu extends JFrame implements ActionListener, Util {
         }
     }
 
+    /**
+     * Handles all JComponents that aren't JFrame or JPanel
+     */
     public void handleComponents() {
         this.exit.setBounds(panel.getWidth() / 2 - 100, panel.getHeight() / 2 + 50, 200, 75);
         this.exit.addActionListener(new AbstractAction() {
@@ -63,14 +72,22 @@ public class MainMenu extends JFrame implements ActionListener, Util {
             }
         });
 
-        this.war.setBounds(panel.getWidth() / 2 - 125, 25, 250, 100);
+        this.war.setBounds(panel.getWidth() / 2 - 20, 25, 250, 100);
+        this.war.setFont(new Font(war.getName(), Font.PLAIN, 25));
 
+        this.playerName.setBounds(panel.getWidth() / 2 - 100, start.getY() - (start.getHeight() / 2), 200, 25);
+    }
+
+    public String getPlayerName() {
+        if(!this.playerName.getText().equalsIgnoreCase("Enter Player Name Here") && !(this.playerName == null)) {
+            return this.playerName.getText();
+        }
+
+        return null;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
-
-
 }

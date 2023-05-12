@@ -17,6 +17,9 @@ public class Deck {
         this.pulledCards = new ArrayList<>();
     }
 
+    /**
+     * Assigns 1 of all 52 card values to arraylist
+     */
     public void assignValues() {
         for(Suit s : Suit.values()) {
             for(Rank r : Rank.values()) {
@@ -25,12 +28,19 @@ public class Deck {
         }
     }
 
+    /**
+     * Resets all cards and any cards that were pulled
+     * Reassigns all card values to card deck
+     */
     public void reset() {
         this.cards.clear();
         this.pulledCards.clear();
         assignValues(); // refilling deck after clear
     }
 
+    /**
+     * Shuffles cards so that they are all random
+     */
     public void shuffle() {
         Collections.shuffle(this.cards);
     }
