@@ -1,8 +1,10 @@
 package Render;
 
+import Render.Game.GameFrame;
 import Util.Util;
 
 import javax.swing.*;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +16,7 @@ public class MainMenu extends JFrame implements ActionListener, Util {
     private JButton start;
     private JButton exit;
     private JLabel war;
-    private JTextArea playerName;
+    private JTextField playerName;
 
     public MainMenu() {
         this.frame = new JFrame("War");
@@ -22,7 +24,7 @@ public class MainMenu extends JFrame implements ActionListener, Util {
         this.start = new JButton("Start");
         this.exit = new JButton("Exit");
         this.war = new JLabel("War");
-        this.playerName = new JTextArea("Enter Player Name Here");
+        this.playerName = new JTextField("Enter Player Name Here");
         handleFrame();
         handleComponents();
     }
@@ -45,11 +47,7 @@ public class MainMenu extends JFrame implements ActionListener, Util {
         this.panel.add(exit);
         this.panel.add(war);
         this.panel.add(playerName);
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
     /**
@@ -65,10 +63,11 @@ public class MainMenu extends JFrame implements ActionListener, Util {
         });
 
         this.start.setBounds(panel.getWidth() / 2 - 125, panel.getHeight() / 2 - 50, 250, 100);
+        this.start.setSelected(false);
         this.start.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Add gameStart
+                new GameFrame().Build();
             }
         });
 
