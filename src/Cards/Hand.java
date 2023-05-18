@@ -18,4 +18,12 @@ public class Hand {
         this.hand.add(0, card);
     }
 
+    /**
+     * This will automatically add cards to the top of our deck
+     * The Highest number in the array represents top of deck and 0 is bottom
+     */
+    public void addCardToTop(Card card) {
+        this.hand.add(card);
+    }
+
 }

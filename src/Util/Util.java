@@ -1,6 +1,8 @@
 package Util;
 
 import Cards.Deck;
+import Cards.Hand;
+
 import java.util.Collections;
 
 public interface Util {
@@ -16,5 +18,4 @@ public interface Util {
     default void shuffleCards(Deck deck) {
         Collections.shuffle(deck.getCards());
     }
-
 }
