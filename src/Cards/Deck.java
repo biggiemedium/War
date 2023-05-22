@@ -45,6 +45,9 @@ public class Deck {
         Collections.shuffle(this.cards);
     }
 
+    /**
+     * For card rendering purposes returns the color of card type
+     */
     public Color getCardColor(Card card) {
         switch (card.getType()) {
             case DIAMOND:

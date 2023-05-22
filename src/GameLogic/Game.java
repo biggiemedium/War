@@ -31,16 +31,15 @@ public class Game implements Util {
         shuffleCards(deck);
         this.dealCards(user, deck);
         this.dealCards(computer, deck);
-
     }
 
     /**
      * We are using 26 because it is half of 52 (deck size)
+     * Removes card from deck after it is assigned to player
      */
     private void dealCards(Player player, Deck deck) {
         for(int i = 0; i < 26; i++) {
-
-            player.getHand().addCardToTop(deck.getCards().get(i));
+            player.getHand().addCardToTop(deck.getCards().remove(deck.getCards().size() - 1));
         }
     }
 

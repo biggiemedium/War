@@ -1,5 +1,7 @@
 package Render.Game;
 
+import GameLogic.Game;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
@@ -8,6 +10,7 @@ public class GameFrame {
     private JFrame frame;
     private JPanel panel;
     private String playerName;
+    private Game game;
 
     private JButton hit, restart, exit;
 
@@ -22,6 +25,7 @@ public class GameFrame {
         this.hit = new JButton("Draw Card");
         this.restart = new JButton("Restart Game");
         this.exit = new JButton("Exit");
+        this.game = new Game(playerName == null ? "" : playerName);
         this.frame.setLocationRelativeTo(null);
         this.frame.setUndecorated(true);
         this.frame.setResizable(false);
@@ -56,12 +60,9 @@ public class GameFrame {
         return this;
     }
 
-    public GameFrame setup() {
-        return this;
-    }
-
     public GameFrame Build() {
         this.frame.setVisible(true);
+        this.game.gameLoop();
         return this;
     }
 
