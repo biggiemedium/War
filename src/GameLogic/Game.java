@@ -5,8 +5,8 @@ import Cards.Deck;
 import Cards.Hand;
 import Util.Util;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Predicate;
 
 public class Game implements Util {
 
@@ -21,20 +21,19 @@ public class Game implements Util {
         this.computerHand = new Hand();
         this.user = new Player(name, playerHand, 0);
         this.computer = new Player("Computer", computerHand, 0);
-
+        this.tempArray = new HashMap<>();
     }
 
-    public void gameLoop() {
+    /**
+     * Actual method that runs the game
+     * Shuffles and deals cards to players
+     */
+    public Game handleDeck() {
         this.deck.assignValues();
         shuffleCards(deck);
         this.dealCards(user, deck);
         this.dealCards(computer, deck);
-    }
-
-    public Player winner() {
-        Card UC = this.user.getHand().getCardAtTop();
-        Card CC = this.computer.getHand().getCardAtTop();
-        return UC.getRank().getValue() > CC.getRank().getValue() ? user : computer;
+        return this;
     }
 
     /**
@@ -85,5 +84,13 @@ public class Game implements Util {
 
     public void setComputer(Player computer) {
         this.computer = computer;
+    }
+
+    public Map<Card, Player> getTempArray() {
+        return tempArray;
+    }
+
+    public void setTempArray(Map<Card, Player> tempArray) {
+        this.tempArray = tempArray;
     }
 }
