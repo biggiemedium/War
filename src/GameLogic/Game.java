@@ -29,12 +29,15 @@ public class Game implements Util {
         shuffleCards(deck);
         this.dealCards(user, deck);
         this.dealCards(computer, deck);
+<<<<<<< HEAD
     }
 
     public Player winner() {
         Card UC = this.user.getHand().getCardAtTop();
         Card CC = this.computer.getHand().getCardAtTop();
         return UC.getRank().getValue() > CC.getRank().getValue() ? user : computer;
+=======
+>>>>>>> 86e49eaa14da93697fbb2db02ced6e43157fec16
     }
 
     /**

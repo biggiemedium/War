@@ -85,8 +85,18 @@ public class GameFrame extends JFrame {
         return this;
     }
 
+<<<<<<< HEAD
+=======
+    public GameFrame withFrameSize(int width, int height) {
+        this.frame.setSize(width, height);
+        this.frame.setLocationRelativeTo(null);
+        return this;
+    }
+
+>>>>>>> 86e49eaa14da93697fbb2db02ced6e43157fec16
     public GameFrame Build() {
         this.frame.setVisible(true);
+        this.game.gameLoop();
         return this;
     }
 
