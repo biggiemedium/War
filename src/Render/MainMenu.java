@@ -68,9 +68,8 @@ public class MainMenu extends JFrame implements ActionListener, Util {
         this.start.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new GameFrame()
+                new GameFrame(frame.getWidth(), frame.getHeight())
                         .withPlayerName(playerName.getText().equalsIgnoreCase("") ? "" : playerName.getText())
-                        .withFrameSize(frame.getWidth(), frame.getHeight())
                         .Build();
                 frame.dispose();
             }

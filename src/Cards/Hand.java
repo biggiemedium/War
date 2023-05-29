@@ -26,4 +26,15 @@ public class Hand {
         this.hand.add(card);
     }
 
+    public Card getCardAtTop() {
+        return this.hand.get(hand.size() - 1); // top
+    }
+
+    public List<Card> getHand() {
+        return hand;
+    }
+
+    public void setHand(List<Card> hand) {
+        this.hand = hand;
+    }
 }

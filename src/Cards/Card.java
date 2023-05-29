@@ -13,6 +13,10 @@ public class Card {
         this.rank = rank;
     }
 
+    public String toString() {
+        return this.type + " " + this.rank;
+    }
+
     public Suit getType() {
         return type;
     }

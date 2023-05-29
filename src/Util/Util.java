@@ -2,6 +2,7 @@ package Util;
 
 import Cards.Deck;
 import Cards.Hand;
+import GameLogic.Player;
 
 import java.util.Collections;
 
@@ -17,5 +18,9 @@ public interface Util {
 
     default void shuffleCards(Deck deck) {
         Collections.shuffle(deck.getCards());
+    }
+
+    default boolean isDeckEmpty(Player player) {
+        return player.getHand().getHand().isEmpty();
     }
 }
