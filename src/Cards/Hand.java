@@ -26,13 +26,10 @@ public class Hand {
         this.hand.add(card);
     }
 
-<<<<<<< HEAD
     public Card getCardAtTop() {
         return this.hand.get(hand.size() - 1); // top
     }
 
-=======
->>>>>>> 86e49eaa14da93697fbb2db02ced6e43157fec16
     public List<Card> getHand() {
         return hand;
     }
