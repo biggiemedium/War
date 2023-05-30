@@ -5,7 +5,9 @@ import Cards.Deck;
 import Cards.Hand;
 import Util.Util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Game implements Util {
@@ -14,6 +16,7 @@ public class Game implements Util {
     private Hand playerHand, computerHand;
     private Player user, computer;
     private Map<Card, Player> tempArray;
+    private List<Card> prizeArray;
 
     public Game(String name) {
         this.deck = new Deck();
@@ -22,6 +25,7 @@ public class Game implements Util {
         this.user = new Player(name, playerHand, 0);
         this.computer = new Player("Computer", computerHand, 0);
         this.tempArray = new HashMap<>();
+        this.prizeArray = new ArrayList<>();
     }
 
     /**
@@ -92,5 +96,13 @@ public class Game implements Util {
 
     public void setTempArray(Map<Card, Player> tempArray) {
         this.tempArray = tempArray;
+    }
+
+    public List<Card> getPrizeArray() {
+        return prizeArray;
+    }
+
+    public void setPrizeArray(List<Card> prizeArray) {
+        this.prizeArray = prizeArray;
     }
 }

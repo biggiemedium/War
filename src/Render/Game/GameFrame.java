@@ -6,6 +6,7 @@ import GameLogic.Game;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 public class GameFrame extends JFrame {
 
@@ -63,8 +64,31 @@ public class GameFrame extends JFrame {
                 Card computer = game.getComputerHand().getCardAtTop();
                 Card player = game.getPlayerHand().getCardAtTop();
                 if(player.getRank().getValue() > computer.getRank().getValue()) {
+                    game.getTempArray().put(computer, game.getUser());
+                    game.getTempArray().put(player, game.getUser());
                     winningMessage.setText(game.getUser().getName() + " Wins!");
-                    
+                } else if(player.getRank().getValue() == computer.getRank().getValue()) {
+                    ArrayList<Card> playerWins = new ArrayList<>();
+                    ArrayList<Card> computerWins = new ArrayList<>();
+                    if(!game.getTempArray().isEmpty()) {
+                        game.getTempArray().forEach((card, user) -> {
+                            if(user == game.getUser()) {
+                                playerWins.add(card);
+                            }
+                            if(user == game.getComputer()) {
+                                computerWins.add(card);
+                            }
+                        });
+                    }
+                    for(int i = 0; i < 3; i++) {
+                        game.getPrizeArray().add(playerWins.get(i));
+                        game.getPrizeArray().add(computerWins.get(i));
+                    }
+                    winningMessage.setText("Tie!");
+                } else if(player.getRank().getValue() < computer.getRank().getValue()) {
+                    game.getTempArray().put(computer, game.getComputer());
+                    game.getTempArray().put(player, game.getComputer());
+                    winningMessage.setText(game.getComputer().getName() + " Wins!");
                 }
             }
         });
