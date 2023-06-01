@@ -40,6 +40,15 @@ public class Game implements Util {
         return this;
     }
 
+    public void giveWinnerPrize(Player player) {
+        if(!this.prizeArray.isEmpty()) {
+            this.prizeArray.forEach(prize -> {
+                this.tempArray.put(prize, player);
+            });
+            this.prizeArray.clear();
+        }
+    }
+
     /**
      * We are using 26 because it is half of 52 (deck size)
      * Removes card from deck after it is assigned to player

@@ -43,6 +43,7 @@ public class MainMenu extends JFrame implements ActionListener, Util {
 
 
         this.panel.setSize(frame.getWidth(), frame.getHeight());
+        //this.panel.setOpaque(true);
         this.panel.add(start);
         this.panel.add(exit);
         this.panel.add(war);
@@ -92,5 +93,13 @@ public class MainMenu extends JFrame implements ActionListener, Util {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        g.create();
+        g.setColor(Color.BLACK);
+        g.fillRect(5, 25, 25, 25);
+        panel.paint(g);
     }
 }
