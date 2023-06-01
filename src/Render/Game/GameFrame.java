@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameFrame extends JFrame {
 
@@ -23,7 +24,9 @@ public class GameFrame extends JFrame {
     private JLabel winningMessage; // displays who won the round
     private JLabel playerCardDisplay; // displays what the next card pulled is going to be for the player
     private JLabel playerDisplay, computerDisplay; // Displays what cards are drawn on button press
+    private DebugFrame debugger;
 
+    private JLabel cardDisplay;
     private int[][] positions = {
 
     };
@@ -40,6 +43,7 @@ public class GameFrame extends JFrame {
         this.playerDisplay = new JLabel("");
         this.computerDisplay = new JLabel("");
         this.playerCardDisplay = new JLabel("");
+        this.cardDisplay = new JLabel("");
         this.frame.setLocationRelativeTo(null);
         this.frame.setUndecorated(true);
         this.frame.setResizable(false);
@@ -56,11 +60,11 @@ public class GameFrame extends JFrame {
         this.panel.add(playerCardDisplay);
         this.panel.add(playerDisplay);
         this.panel.add(computerDisplay);
-
+        this.panel.add(cardDisplay);
         this.panel.add(exit);
         buttons();
 
-        new DebugFrame(this.game);
+        this.debugger = new DebugFrame(this.game);
     }
 
     /**
@@ -76,8 +80,9 @@ public class GameFrame extends JFrame {
         this.playerCardDisplay.setBackground(this.frame.getBackground());
         updateCardDisplay();
 
-        RenderUtil.setupComponent(playerDisplay, new Dimension<Integer>(frame.getWidth() / 2 - 220, frame.getHeight() / 2 - 100, 250, 100));
-        RenderUtil.setupComponent(computerDisplay, new Dimension<Integer>(frame.getWidth() / 2 + 50, frame.getHeight() / 2 - 100, 250, 100));
+        RenderUtil.setupComponent(playerDisplay, new Dimension<Integer>(frame.getWidth() / 2 - 220, frame.getHeight() / 2 - 120, 250, 100));
+        RenderUtil.setupComponent(computerDisplay, new Dimension<Integer>(frame.getWidth() / 2 + 70, frame.getHeight() / 2 - 120, 250, 100));
+        RenderUtil.setupComponent(cardDisplay, new Dimension<>(frame.getWidth() / 2 - 5, frame.getHeight() / 2 - 100, 50, 50));
 
         this.hit.setVisible(true);
         this.hit.setSelected(false);
@@ -87,20 +92,20 @@ public class GameFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Card computer = game.getComputerHand().getCardAtTop();
                 Card player = game.getPlayerHand().getCardAtTop();
-                Player winner = null;
+                String winner = null;
                 if(player.getRank().getValue() > computer.getRank().getValue()) {
-
+                    cardDisplay.setText(" > ");
                     playerDisplay.setText("Player: " + player);
                     computerDisplay.setText("Computer: " + computer);
 
-                    winner = game.getUser();
+                    winner = game.getUser().getName();
                     game.getTempArray().put(computer, game.getUser());
                     game.getTempArray().put(player, game.getUser());
 
                     game.getUser().getHand().getHand().remove(player);
                     game.getComputer().getHand().getHand().remove(computer);
 
-                    winningMessage.setText(winner.getName() + " Wins!");
+                    winningMessage.setText(winner + " Wins!");
                     game.giveWinnerPrize(game.getUser());
                     debug();
                 } else if(player.getRank().getValue() == computer.getRank().getValue()) {
@@ -108,6 +113,16 @@ public class GameFrame extends JFrame {
                     ArrayList<Card> computerWins = new ArrayList<>();
                     playerDisplay.setText("Player: " + player);
                     computerDisplay.setText("Computer: " + computer);
+                    cardDisplay.setText(" = ");
+
+                    Random r = new Random(game.getUser().getHand().getHand().size());
+                    Random r2 = new Random(game.getUser().getHand().getHand().size());
+                    Card pc = game.getUser().getHand().getCardAtTop();
+                    game.getUser().getHand().getHand().remove(pc);
+                    game.getUser().getHand().getHand().add(r.nextInt(), pc); // returns null TODO: Fix
+                    game.getComputer().getHand().getHand().remove(pc);
+                    game.getComputer().getHand().getHand().add(r2.nextInt(), pc);
+
                     //game.shuffleCards(game.getDeck()); // so it stops looping at a tie
                     //TODO: if cards values are equal. Remove from top of deck and add to random position in deck
 
@@ -122,15 +137,11 @@ public class GameFrame extends JFrame {
                         });
                     }
 
-                    // THIS IS NULL IDK WHY
-                    //for(int i = 0; i < 3; i++) {
-                    //    game.getPrizeArray().add(playerWins.get(i));
-                    //    game.getPrizeArray().add(computerWins.get(i));
-                    //}
                     winningMessage.setText("War!");
                     debug();
                 } else if(player.getRank().getValue() < computer.getRank().getValue()) {
-                    winner = game.getComputer();
+                    winner = game.getComputer().getName();
+                    cardDisplay.setText(" < ");
                     playerDisplay.setText("Player: " + player);
                     computerDisplay.setText("Computer: " + computer);
 
@@ -140,11 +151,12 @@ public class GameFrame extends JFrame {
                     game.getUser().getHand().getHand().remove(player);
                     game.getComputer().getHand().getHand().remove(computer);
 
-                    winningMessage.setText(winner.getName() + " Wins!");
+                    winningMessage.setText(winner + " Wins!");
                     game.giveWinnerPrize(game.getComputer());
                     debug();
                 }
                 updateCardDisplay();
+                debugger.update();
             }
         });
     }

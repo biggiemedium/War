@@ -1,7 +1,8 @@
 package Render;
 
 import Render.Game.GameFrame;
-import Util.Util;
+import Util.Dimension;
+import Util.RenderUtil;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
@@ -9,13 +10,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainMenu extends JFrame implements ActionListener, Util {
+public class MainMenu extends JFrame implements ActionListener {
 
     private JFrame frame;
     private JPanel panel;
     private JButton start;
     private JButton exit;
     private JLabel war;
+    private JLabel warningLabel;
     private JTextField playerName;
 
     public MainMenu() {
@@ -25,6 +27,7 @@ public class MainMenu extends JFrame implements ActionListener, Util {
         this.exit = new JButton("Exit");
         this.war = new JLabel("War");
         this.playerName = new JTextField("Enter Player Name Here");
+        this.warningLabel = new JLabel("Warning: Name entered is invalid...");
         handleFrame();
         handleComponents();
     }
@@ -48,13 +51,17 @@ public class MainMenu extends JFrame implements ActionListener, Util {
         this.panel.add(exit);
         this.panel.add(war);
         this.panel.add(playerName);
-
+        this.panel.add(warningLabel);
     }
 
     /**
      * Handles all JComponents that aren't JFrame or JPanel
      */
     public void handleComponents() {
+        RenderUtil.setupComponent(warningLabel, new Dimension<>(3, frame.getHeight() - 40, 250, 50));
+        warningLabel.setForeground(Color.RED);
+        warningLabel.setVisible(false);
+
         this.exit.setBounds(panel.getWidth() / 2 - 100, panel.getHeight() / 2 + 50, 200, 75);
         this.exit.addActionListener(new AbstractAction() {
             @Override
@@ -69,6 +76,12 @@ public class MainMenu extends JFrame implements ActionListener, Util {
         this.start.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                if(playerName.getText().equalsIgnoreCase("Enter Player Name Here") || playerName.getText().isEmpty() || playerName.getText().length() >= 20) {
+                    warningLabel.setVisible(true);
+                    return;
+                }
+
                 new GameFrame(frame.getWidth(), frame.getHeight())
                         .withPlayerName(playerName.getText().equalsIgnoreCase("") ? "" : playerName.getText())
                         .Build();

@@ -4,6 +4,7 @@ import Cards.Card;
 import GameLogic.Game;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class DebugFrame {
 
@@ -39,10 +40,11 @@ public class DebugFrame {
 
         this.currentPlayer.setText("Player Card: " + game.getUser().getHand().getCardAtTop());
         this.currentComputer.setText("Computer Card: " + game.getComputer().getHand().getCardAtTop());
+    }
 
-        for(Card c : this.game.getPlayerHand().getHand()) {
-            playerCards.setText(c.getType() + " " + c.getRank() + " \n");
-        }
+    public void update() {
+        this.currentPlayer.setText("Player Card: " + game.getUser().getHand().getCardAtTop());
+        this.currentComputer.setText("Computer Card: " + game.getComputer().getHand().getCardAtTop());
     }
 
 }

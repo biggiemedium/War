@@ -23,4 +23,5 @@ public interface Util {
     default boolean isDeckEmpty(Player player) {
         return player.getHand().getHand().isEmpty();
     }
+
 }
