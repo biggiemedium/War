@@ -5,7 +5,6 @@ import Util.Dimension;
 import Util.RenderUtil;
 
 import javax.swing.*;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -63,6 +62,7 @@ public class MainMenu extends JFrame implements ActionListener {
         warningLabel.setVisible(false);
 
         this.exit.setBounds(panel.getWidth() / 2 - 100, panel.getHeight() / 2 + 50, 200, 75);
+        RenderUtil.handleColouring(exit, new Color(255, 255, 255));
         this.exit.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,6 +73,7 @@ public class MainMenu extends JFrame implements ActionListener {
 
         this.start.setBounds(panel.getWidth() / 2 - 125, panel.getHeight() / 2 - 50, 250, 100);
         this.start.setSelected(false);
+        RenderUtil.handleColouring(start, new Color(255, 255, 255));
         this.start.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -83,7 +84,11 @@ public class MainMenu extends JFrame implements ActionListener {
                 }
 
                 new GameFrame(frame.getWidth(), frame.getHeight())
+<<<<<<< Updated upstream
                         .withPlayerName(playerName.getText().equalsIgnoreCase("") ? "" : playerName.getText())
+=======
+                        .withPlayerName(playerName.getText()) // we don't need ternary operator because of method above
+>>>>>>> Stashed changes
                         .Build();
                 frame.dispose();
             }
@@ -95,17 +100,9 @@ public class MainMenu extends JFrame implements ActionListener {
         this.playerName.setBounds(panel.getWidth() / 2 - 100, start.getY() - (start.getHeight() / 2), 200, 25);
     }
 
-    public String getPlayerName() {
-        if(!this.playerName.getText().equalsIgnoreCase("Enter Player Name Here") && !(this.playerName == null)) {
-            return this.playerName.getText();
-        }
-
-        return null;
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        // Empty code block. ActionListener requires this to be here since its an interface
     }
 
     @Override

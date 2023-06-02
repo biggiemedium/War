@@ -16,4 +16,19 @@ public class RenderUtil {
         button.setBounds(dimension.getX(), dimension.getY(), dimension.getWidth(), dimension.getHeight());
     }
 
+<<<<<<< Updated upstream
+=======
+    public static void setDimensions(JComponent button, Dimension<Integer> dimension) {
+        button.setBounds(dimension.getX(), dimension.getY(), dimension.getWidth(), dimension.getHeight());
+    }
+
+    public static void handleColouring(JComponent button, Color foreground, Color background) {
+        button.setBackground(background);
+        button.setForeground(foreground);
+    }
+
+    public static void handleColouring(JComponent button, Color background) {
+        button.setBackground(background);
+    }
+>>>>>>> Stashed changes
 }

@@ -34,6 +34,10 @@ public class Player {
         return points;
     }
 
+    public void increasePoints() {
+        this.points += 1;
+    }
+
     public void setPoints(int points) {
         this.points = points;
     }
