@@ -3,10 +3,7 @@ package Render.Game;
 import Cards.Card;
 import GameLogic.Game;
 import GameLogic.Player;
-<<<<<<< Updated upstream
-=======
 import Render.MainMenu;
->>>>>>> Stashed changes
 import Util.DebugFrame;
 import Util.Dimension;
 import Util.RenderUtil;
@@ -14,14 +11,10 @@ import Util.RenderUtil;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-<<<<<<< Updated upstream
-import java.util.ArrayList;
-=======
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
->>>>>>> Stashed changes
 import java.util.Random;
 
 public class GameFrame extends JFrame {
@@ -34,13 +27,8 @@ public class GameFrame extends JFrame {
     private JButton hit, restart, exit;
     private JLabel winningMessage; // displays who won the round
     private JLabel playerCardDisplay; // displays what the next card pulled is going to be for the player
-<<<<<<< Updated upstream
-    private JLabel playerDisplay, computerDisplay; // Displays what cards are drawn on button press
-    private DebugFrame debugger;
-=======
     private JLabel deckCount;
     private JLabel playerDisplay, computerDisplay; // Displays what cards are drawn on button press
->>>>>>> Stashed changes
 
     private JLabel cardDisplay;
     private int[][] positions = {
@@ -48,11 +36,7 @@ public class GameFrame extends JFrame {
     };
 
     public GameFrame(int width, int height) {
-<<<<<<< Updated upstream
-        this.playerName = "";
-=======
         this.playerName = "Player";
->>>>>>> Stashed changes
         this.frame = new JFrame("War");
         this.panel = new JPanel(null);
         this.hit = new JButton("Draw Card");
@@ -63,10 +47,7 @@ public class GameFrame extends JFrame {
         this.playerDisplay = new JLabel("");
         this.computerDisplay = new JLabel("");
         this.playerCardDisplay = new JLabel("");
-<<<<<<< Updated upstream
-=======
         this.deckCount = new JLabel("");
->>>>>>> Stashed changes
         this.cardDisplay = new JLabel("");
         this.frame.setLocationRelativeTo(null);
         this.frame.setUndecorated(true);
@@ -85,14 +66,9 @@ public class GameFrame extends JFrame {
         this.panel.add(playerDisplay);
         this.panel.add(computerDisplay);
         this.panel.add(cardDisplay);
-<<<<<<< Updated upstream
-=======
         this.panel.add(deckCount);
->>>>>>> Stashed changes
         this.panel.add(exit);
         buttons();
-
-        this.debugger = new DebugFrame(this.game);
     }
 
     /**
@@ -102,11 +78,7 @@ public class GameFrame extends JFrame {
     public void buttons() {
         this.winningMessage.setVisible(true);
         this.winningMessage.setBounds(frame.getWidth() / 2 - 25, 25, 150, 50);
-<<<<<<< Updated upstream
-        this.winningMessage.setSize(100, 100);
-=======
         this.winningMessage.setSize(150, 100);
->>>>>>> Stashed changes
 
         this.playerCardDisplay.setBounds(5, frame.getHeight() / 2 + 180, 250, 100);
         this.playerCardDisplay.setBackground(this.frame.getBackground());
@@ -114,9 +86,6 @@ public class GameFrame extends JFrame {
 
         RenderUtil.setupComponent(playerDisplay, new Dimension<Integer>(frame.getWidth() / 2 - 220, frame.getHeight() / 2 - 120, 250, 100));
         RenderUtil.setupComponent(computerDisplay, new Dimension<Integer>(frame.getWidth() / 2 + 70, frame.getHeight() / 2 - 120, 250, 100));
-<<<<<<< Updated upstream
-        RenderUtil.setupComponent(cardDisplay, new Dimension<>(frame.getWidth() / 2 - 5, frame.getHeight() / 2 - 100, 50, 50));
-=======
         RenderUtil.setupComponent(cardDisplay, new Dimension<>(frame.getWidth() / 2 - 5, frame.getHeight() / 2 - 80, 50, 50));
 
         RenderUtil.setupComponent(exit, new Dimension<>(frame.getWidth() - 120, this.frame.getHeight() - 30, 120, 30));
@@ -125,41 +94,16 @@ public class GameFrame extends JFrame {
         RenderUtil.handleColouring(restart, new Color(255, 255, 255));
 
         RenderUtil.setupComponent(deckCount, new Dimension<>(playerCardDisplay.getX(), playerCardDisplay.getY() + 37, 200, 50));
->>>>>>> Stashed changes
 
         this.hit.setVisible(true);
         this.hit.setSelected(false);
         this.hit.setBounds(frame.getWidth() / 2 - 75, this.frame.getHeight() - 100, 150, 50);
-<<<<<<< Updated upstream
-=======
         RenderUtil.handleColouring(hit, new Color(255, 255, 255));
->>>>>>> Stashed changes
         this.hit.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Card computer = game.getComputerHand().getCardAtTop();
                 Card player = game.getPlayerHand().getCardAtTop();
-<<<<<<< Updated upstream
-                String winner = null;
-                if(player.getRank().getValue() > computer.getRank().getValue()) {
-                    cardDisplay.setText(" > ");
-                    playerDisplay.setText("Player: " + player);
-                    computerDisplay.setText("Computer: " + computer);
-
-                    winner = game.getUser().getName();
-                    game.getTempArray().put(computer, game.getUser());
-                    game.getTempArray().put(player, game.getUser());
-
-                    game.getUser().getHand().getHand().remove(player);
-                    game.getComputer().getHand().getHand().remove(computer);
-
-                    winningMessage.setText(winner + " Wins!");
-                    game.giveWinnerPrize(game.getUser());
-                    debug();
-                } else if(player.getRank().getValue() == computer.getRank().getValue()) {
-                    ArrayList<Card> playerWins = new ArrayList<>();
-                    ArrayList<Card> computerWins = new ArrayList<>();
-=======
                 // if our temp array fills up we need to return the cards back to the player hands
                 if(game.getComputerHand().getHand().size() == 1 || game.getPlayerHand().getHand().size() == 1) {
                     System.out.println("Hand is empty... Filling...");
@@ -213,39 +157,10 @@ public class GameFrame extends JFrame {
                     winnerCheck();
                 } else if(player.getRank().getValue() == computer.getRank().getValue()) {
                     // update visualization
->>>>>>> Stashed changes
                     playerDisplay.setText("Player: " + player);
                     computerDisplay.setText("Computer: " + computer);
                     cardDisplay.setText(" = ");
 
-<<<<<<< Updated upstream
-                    Random r = new Random(game.getUser().getHand().getHand().size());
-                    Random r2 = new Random(game.getUser().getHand().getHand().size());
-                    Card pc = game.getUser().getHand().getCardAtTop();
-                    game.getUser().getHand().getHand().remove(pc);
-                    game.getUser().getHand().getHand().add(r.nextInt(), pc); // returns null TODO: Fix
-                    game.getComputer().getHand().getHand().remove(pc);
-                    game.getComputer().getHand().getHand().add(r2.nextInt(), pc);
-
-                    //game.shuffleCards(game.getDeck()); // so it stops looping at a tie
-                    //TODO: if cards values are equal. Remove from top of deck and add to random position in deck
-
-                    if(!game.getTempArray().isEmpty()) {
-                        game.getTempArray().forEach((card, user) -> {
-                            if(user == game.getUser()) {
-                                playerWins.add(card);
-                            }
-                            if(user == game.getComputer()) {
-                                computerWins.add(card);
-                            }
-                        });
-                    }
-
-                    winningMessage.setText("War!");
-                    debug();
-                } else if(player.getRank().getValue() < computer.getRank().getValue()) {
-                    winner = game.getComputer().getName();
-=======
                     /**
                      * Puts card in hashmap after player has won the round
                      * @see Game.tempArray
@@ -268,25 +183,10 @@ public class GameFrame extends JFrame {
                     winnerCheck();
                 } else if(player.getRank().getValue() < computer.getRank().getValue()) {
                     // update visualization
->>>>>>> Stashed changes
                     cardDisplay.setText(" < ");
                     playerDisplay.setText("Player: " + player);
                     computerDisplay.setText("Computer: " + computer);
 
-<<<<<<< Updated upstream
-                    game.getTempArray().put(computer, game.getComputer());
-                    game.getTempArray().put(player, game.getComputer());
-
-                    game.getUser().getHand().getHand().remove(player);
-                    game.getComputer().getHand().getHand().remove(computer);
-
-                    winningMessage.setText(winner + " Wins!");
-                    game.giveWinnerPrize(game.getComputer());
-                    debug();
-                }
-                updateCardDisplay();
-                debugger.update();
-=======
                     /**
                      * Puts card in hashmap after player has won the round
                      * @see Game.tempArray
@@ -311,7 +211,6 @@ public class GameFrame extends JFrame {
                     winnerCheck();
                 }
                 updateCardDisplay(); // updates current card display
->>>>>>> Stashed changes
             }
         });
 
@@ -395,49 +294,6 @@ public class GameFrame extends JFrame {
         super.paint(g);
 
         
-    }
-
-    private void updateCardDisplay() {
-        this.playerCardDisplay.setText("Next Card: \n" + this.game.getPlayerHand().getHand().get(this.game.getPlayerHand().getHand().size() - 1));
-    }
-
-    private void debug() {
-        System.out.println("User Hand:");
-        game.getPlayerHand().getHand().forEach(p -> {
-            System.out.print(p.getType() + " " + p.getRank() + ", \n");
-        });
-        System.out.println("");
-        System.out.println("Computer Hand:");
-        game.getComputerHand().getHand().forEach(p -> {
-            System.out.print(p.getType() + " " + p.getRank() + ", \n");
-        });
-        System.out.println("");
-        System.out.println("TempArray:");
-        game.getTempArray().forEach((p, user) -> {
-            System.out.print(user.getName() + ": \n" + p.getType() + " " + p.getRank() + ", ");
-        });
-        System.out.println("\nNEW GAME: \n\n");
-    }
-
-    /**
-     * Method used to render what player has the higher cards on pull
-     */
-    private void renderGame() {
-
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        g = this.getGraphics();
-        if(g == null) {
-            return;
-        }
-
-        g.create();
-        g.drawString(playerName == null ? "Player" : playerName, 2, 5);
-        g.drawRect(25, 25, 25, 2);
-        g.dispose();
     }
 
     public GameFrame withPlayerName(String name) {

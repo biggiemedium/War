@@ -84,11 +84,7 @@ public class MainMenu extends JFrame implements ActionListener {
                 }
 
                 new GameFrame(frame.getWidth(), frame.getHeight())
-<<<<<<< Updated upstream
-                        .withPlayerName(playerName.getText().equalsIgnoreCase("") ? "" : playerName.getText())
-=======
                         .withPlayerName(playerName.getText()) // we don't need ternary operator because of method above
->>>>>>> Stashed changes
                         .Build();
                 frame.dispose();
             }
@@ -103,13 +99,5 @@ public class MainMenu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         // Empty code block. ActionListener requires this to be here since its an interface
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        g.create();
-        g.setColor(Color.BLACK);
-        g.fillRect(5, 25, 25, 25);
-        panel.paint(g);
     }
 }

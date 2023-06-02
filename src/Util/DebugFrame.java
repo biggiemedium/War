@@ -15,12 +15,9 @@ public class DebugFrame {
 
     JLabel currentPlayer = new JLabel("");
     JLabel currentComputer = new JLabel("");
-<<<<<<< Updated upstream
-=======
 
     JLabel currentPlayerSize = new JLabel("");
     JLabel currentComputerSize = new JLabel("");
->>>>>>> Stashed changes
     Game game;
 
     public DebugFrame(Game game) {
@@ -39,15 +36,6 @@ public class DebugFrame {
     }
 
     public void buttons() {
-<<<<<<< Updated upstream
-        RenderUtil.setupComponent(playerCards, new Dimension<Integer>(5, frame.getHeight() / 2 - 100, 150, 250));
-        RenderUtil.setupComponent(computerCards, new Dimension<Integer>(frame.getWidth() - 200, frame.getHeight() / 2 - 100, 150, 250));
-        RenderUtil.setupComponent(currentPlayer, new Dimension<Integer>(5, 25, 150, 50));
-        RenderUtil.setupComponent(currentComputer, new Dimension<Integer>(frame.getWidth() - 200, 25, 150, 50));
-
-        this.currentPlayer.setText("Player Card: " + game.getUser().getHand().getCardAtTop());
-        this.currentComputer.setText("Computer Card: " + game.getComputer().getHand().getCardAtTop());
-=======
         RenderUtil.setupComponent(currentPlayer, new Dimension<Integer>(5, 25, 250, 50));
         RenderUtil.setupComponent(currentComputer, new Dimension<Integer>(frame.getWidth() - 200, 25, 250, 50));
 
@@ -61,16 +49,11 @@ public class DebugFrame {
         this.currentComputer.setText("Computer Card: " + game.getComputer().getHand().getCardAtTop());
 
         visualizeHand();
->>>>>>> Stashed changes
     }
 
     public void update() {
         this.currentPlayer.setText("Player Card: " + game.getUser().getHand().getCardAtTop());
         this.currentComputer.setText("Computer Card: " + game.getComputer().getHand().getCardAtTop());
-<<<<<<< Updated upstream
-    }
-
-=======
 
         visualizeHand();
     }
@@ -87,5 +70,4 @@ public class DebugFrame {
     public JFrame getFrame() {
         return frame;
     }
->>>>>>> Stashed changes
 }

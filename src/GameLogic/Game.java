@@ -16,7 +16,6 @@ public class Game implements Util {
     private Hand playerHand, computerHand;
     private Player user, computer;
     private Map<Card, Player> tempArray;
-    private List<Card> prizeArray;
 
     public Game(String name) {
         this.deck = new Deck();
@@ -25,10 +24,6 @@ public class Game implements Util {
         this.user = new Player(name, playerHand, 0);
         this.computer = new Player("Computer", computerHand, 0);
         this.tempArray = new HashMap<>();
-<<<<<<< Updated upstream
-        this.prizeArray = new ArrayList<>();
-=======
->>>>>>> Stashed changes
     }
 
     /**
@@ -41,18 +36,6 @@ public class Game implements Util {
         this.dealCards(user, deck);
         this.dealCards(computer, deck);
         return this;
-<<<<<<< Updated upstream
-    }
-
-    public void giveWinnerPrize(Player player) {
-        if(!this.prizeArray.isEmpty()) {
-            this.prizeArray.forEach(prize -> {
-                this.tempArray.put(prize, player);
-            });
-            this.prizeArray.clear();
-        }
-=======
->>>>>>> Stashed changes
     }
 
     /**
@@ -111,16 +94,5 @@ public class Game implements Util {
 
     public void setTempArray(Map<Card, Player> tempArray) {
         this.tempArray = tempArray;
-<<<<<<< Updated upstream
-    }
-
-    public List<Card> getPrizeArray() {
-        return prizeArray;
-    }
-
-    public void setPrizeArray(List<Card> prizeArray) {
-        this.prizeArray = prizeArray;
-=======
->>>>>>> Stashed changes
     }
 }
